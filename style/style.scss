@@ -1,0 +1,812 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "variables";
+@import "responsive";
+
+// #region RESET CSS
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Montserrat", sans-serif;
+}
+
+a {
+  color: black;
+}
+
+img {
+  object-fit: cover;
+}
+
+button {
+  cursor: pointer;
+}
+
+// #endregion RESET CSS
+
+// #region Components
+
+.container {
+  max-width: 1350px;
+  margin: 0 auto;
+
+  @include desktop {
+    max-width: 1130px;
+  }
+  @include tablet {
+    max-width: 95%;
+  }
+  @include mobile {
+    width: 93%;
+  }
+
+  @include extra-small-device {
+    width: 93%;
+  }
+  @include extra-extra-small-device {
+    width: 100%;
+  }
+}
+
+header {
+  background-color: #23856d;
+  width: 100%;
+  color: white;
+  display: block;
+
+  @include desktop {
+    display: none;
+  }
+
+  .header--items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    flex-wrap: wrap;
+    gap: 15px;
+    &--icon {
+      margin-right: 5px;
+    }
+    .header--items--item--sociall {
+      display: flex;
+      gap: 20px;
+    }
+    &--item:nth-last-of-type(1) {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  @include tablet{
+    gap: 5px;
+  }
+
+
+  .hamburger--menu {
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    display: none;
+    transition: 0 !important;
+    @include mobile {
+      display: block;
+    }
+  }
+
+  .hamburger--menu.active ~ * {
+    transition: 1s;
+    display: flex;
+  }
+
+  &--navigation {
+    justify-content: center;
+    &--list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;  
+      align-items: center;
+
+      @include tablet{
+        gap: 10px;
+      }
+
+      li {
+        a {
+          color: #737373;
+        }
+      }
+      @include mobile {
+        flex-direction: column;
+        text-align: center;
+        font-size: 1rem;
+      }
+    }
+    @include tablet {
+      font-size: 0.8rem;
+    }
+    @include mobile {
+      display: none;
+      width: 100%;
+    }
+  }
+
+  &--user {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+
+    ul {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+
+      @include mobile {
+        font-size: 1.1rem;
+      }
+    }
+
+    &--auth {
+      display: flex;
+      gap: 10px;
+
+      a {
+        color: $primary-clr;
+      }
+
+      @include tablet{
+        font-size: 14px;
+      }
+      
+    }
+    @include tablet {
+      font-size: 1rem;
+    }
+    @include mobile {
+      display: none;
+      width: 100%;
+    }
+  }
+
+  &--actions {
+    display: flex;
+    gap: 35px;
+    justify-content: center;
+    @include tablet{
+      gap: 10px;
+    }
+    @include mobile {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      img {
+        width: 25px;
+      }
+    }
+  }
+}
+
+.page--location {
+  padding: 40px 0;
+  background-color: $secondary-bg;
+  &--content {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    @include mobile {
+      justify-content: center;
+    }
+  }
+}
+
+.about {
+  background-color: $secondary-bg;
+  &--contents {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+    @include desktop {
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  &--photos {
+    &--main {
+      img {
+        width: 506px;
+        height: 480px;
+
+        @include desktop {
+          width: 850px;
+          height: 600px;
+        }
+        @include tablet {
+          width: 720px;
+          height: 500px;
+        }
+        @include mobile {
+          width: 520px;
+          height: 450px;
+        }
+        @include extra-small-device {
+          width: 350px;
+          height: 225px;
+        }
+        @include extra-extra-small-device {
+          width: 100%;
+        }
+      }
+    }
+    &--secondary {
+      img {
+        width: 100px;
+        height: 100px;
+        @include desktop {
+          width: 120px;
+          height: 120px;
+        }
+        @include tablet {
+          width: 100px;
+          height: 100px;
+        }
+
+        @include mobile {
+          width: 80px;
+          height: 80px;
+        }
+      }
+    }
+  }
+
+  &--content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include desktop {
+      width: 750px;
+    }
+
+    @include mobile {
+      width: 440px;
+      // padding: 0 10px;
+      justify-content: start;
+    }
+
+    @include extra-small-device {
+      width: 99%;
+    }
+
+    h3 {
+      font-weight: 500;
+    }
+
+    &--star {
+      letter-spacing: 10px;
+      font-size: 1.1rem;
+      .about--review {
+        letter-spacing: 0;
+        font-size: 17px;
+        font-weight: 600;
+        color: #737373;
+      }
+    }
+
+    p {
+      font-weight: 600;
+    }
+
+    &--desc {
+      width: 600px;
+      color: rgba(0, 0, 0, 0.452);
+      font-weight: 500;
+      border-bottom: 2px solid #bdbdbd;
+      padding-top: 30px;
+      padding-bottom: 20px;
+      @include mobile {
+        width: 100%;
+        font-size: 14px;
+      }
+      @include extra-small-device {
+        width: 100%;
+      }
+      @include extra-small-device {
+        width: 99%;
+      }
+      
+    }
+
+    &--colors {
+      padding: 20px 0;
+      display: flex;
+      gap: 40px;
+
+      @include extra-small-device{
+        gap: 0px;
+        justify-content: space-between;
+      }
+      .color {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+      }
+      .first {
+        background-color: $primary-clr;
+      }
+      .second {
+        background-color: #23856d;
+      }
+      .third {
+        background-color: orange;
+      }
+      .fourth {
+        background-color: black;
+      }
+      @include extra-small-device {
+        width: 99%;
+      }
+    }
+    &--actions {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+
+      button {
+        height: 45px;
+        width: 180px;
+        background-color: $primary-clr;
+        color: white;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        @include mobile{
+          width: 160px;
+          height: 40px;
+        }
+      }
+
+      div {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.116);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include mobile{
+          width: 25px;
+          height: 25px;
+        }
+        
+      }
+
+      @include tablet {
+        gap: 10px;
+      }
+    }
+  }
+}
+
+.overview {
+  padding: 40px 0;
+  &--header {
+    padding: 20px 0;
+    @include extra-small-device {
+      font-size: 10px;
+    }
+    ul {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      font-weight: 600;
+      color: #bdbdbd;
+    }
+  }
+
+  &--body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &--aside {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      width: 800px;
+      @include mobile {
+        gap: 30px;
+      }
+      &--border {
+        padding-left: 40px;
+        border-left: 3px solid #23856d;
+      }
+
+      p {
+        color: #737373;
+        font-weight: 500;
+        margin-right: 40px;
+        @include extra-small-device {
+          font-size: 12px;
+        }
+      }
+    }
+    &--photo {
+      padding: 30px;
+      @include mobile{
+        padding:30px 10px;
+      }
+      @include extra-extra-small-device{
+        padding: 0px;
+      }
+
+      img {
+        width: 400px;
+        height: 400px;
+
+        @include desktop {
+          width: 500px;
+          height: 500px;
+        }
+        @include tablet {
+          width: 600px;
+          height: 600px;
+        }
+        @include mobile {
+          width: 500px;
+          height: 500px;
+        }
+        @include extra-small-device {
+          width: 300px;
+          height: 300px;
+        }
+      }
+    }
+  }
+}
+
+.products {
+  background-color: #fafafa;
+  &--head {
+    padding: 40px 0;
+    border-bottom: 1px solid #ececec;
+    @include desktop {
+      text-align: center;
+    }
+  }
+
+  &--list {
+    padding: 30px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    row-gap: 30px;
+
+    @include desktop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+
+    &--product {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: white;
+
+      &--img {
+        img {
+          width: 250px;
+          height: 300px;
+          transition: 0.5s;
+          &:hover {
+            transform: scale(1.05);
+          }
+          @include tablet {
+            width: 300px;
+            height: 350px;
+          }
+          @include mobile {
+            width: 350px;
+            height: 400px;
+          }
+          @include extra-small-device {
+            width: 250px;
+            height: 300px;
+          }
+        }
+      }
+    }
+    &--desc {
+      padding: 10px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      h6 {
+        a {
+          color: #737373;
+          font-size: 0.7rem;
+        }
+      }
+      p {
+        a {
+          color: #7373739a;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+.bottom--icons {
+  padding: 40px 0;
+  background-color: #fafafa;
+  &--content {
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    place-items: center;
+    row-gap: 30px;
+    @include desktop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+    img {
+      object-fit: contain;
+      color: #737373;
+
+      @include mobile {
+        width: 20%;
+      }
+    }
+  }
+}
+
+.footer {
+  padding-bottom: 100px;
+  &--content {
+    &--head {
+      padding: 40px 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e6e6e6;
+      flex-wrap: wrap;
+      gap: 40px;
+
+      @include tablet {
+        padding: 40px 0;
+      }
+      &--sociall {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+    }
+
+    &--body {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 40px 0;
+      gap: 50px;
+
+      //   @include mobile{
+      //     justify-content: start;
+      // row-gap: 40px;
+      // font-size: 0.9rem;
+      //   }
+
+      @include tablet {
+        justify-content: start;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        li {
+          a {
+            letter-spacing: 1px;
+            font-weight: 500;
+            color: #737373;
+          }
+        }
+      }
+
+      form {
+        input,
+        button {
+          height: 50px;
+
+          outline: none;
+          padding: 8px 16px;
+          font-size: 16px;
+          border: 1px solid #e6e6e6;
+          @include mobile {
+            height: 40px;
+            font-size: 10px;
+          }
+        }
+
+        button {
+          background-color: $primary-clr;
+          color: white;
+          border-left: none;
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 8px;
+        }
+        input {
+          border-right: none;
+          border-top-left-radius: 8px;
+          border-bottom-left-radius: 8px;
+        }
+      }
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+// #endregion Components
+
+//  #region DIFF class
+.text-green {
+  color: #23856d;
+}
+.font--bold {
+  font-weight: 600;
+}
+.diff-text {
+  color: $primary-clr;
+}
+
+// #endregion DIFF class
+
+// #region Hamburger
+.hamburger--menu {
+  width: 40px;
+  height: 8px;
+  background-color: $primary-clr;
+  cursor: pointer;
+}
+
+.hamburger--menu::before {
+  content: "";
+  cursor: pointer;
+  width: 40px;
+  height: 8px;
+  background-color: $primary-clr;
+  position: absolute;
+  top: 10px;
+  transition: 0.3s;
+}
+
+.hamburger--menu::after {
+  content: "";
+  cursor: pointer;
+  width: 40px;
+  height: 8px;
+  background-color: $primary-clr;
+  position: absolute;
+  bottom: 10px;
+  transition: 0.3s;
+}
+
+.hamburger--menu.active::after {
+  transform: translateY(18px) rotate(45deg);
+}
+
+.hamburger--menu.active::before {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+.hamburger--menu.active {
+  height: 0;
+}
+// #endregion Hamburger
+
+
+
+h1 .animate{
+  animation: animate 1s infinite linear;
+}
+
+
+@keyframes animate {
+  0%{
+    color: #23856d;
+    text-shadow: none;
+  }
+  18%{
+    color: #23856d;
+    text-shadow: none;
+
+  }
+  20%{
+    color: #23856d;
+    text-shadow: 0 0 9px #23856d, 0 0 20px #0f5040;
+
+  }
+  30%{
+    color: #23856d;
+    text-shadow: none;
+
+  }
+  35%{
+    color: #23856d;
+    text-shadow: 0 0 9px #23856d, 0 0 20px #0f5040;
+
+  }
+  70%{
+    color: #23856d;
+    text-shadow: none;
+
+  }
+  85%{
+    color: #30c09c;
+    text-shadow: 0 0 9px #23856d, 0 0 20px #0f5040;
+
+  }
+  90%{
+    color: #23856d;
+    text-shadow: none;
+
+  }
+  100%{
+    color: #23856d;
+    text-shadow: none;
+
+  }
+}
+
+h1 span:nth-child(1){
+  animation-delay: .2s;
+}
+
+h1 span:nth-child(2){
+  animation-delay: .4s;
+}
+h1 span:nth-child(3){
+  animation-delay: .6s;
+}
+h1 span:nth-child(4){
+  animation-delay: .8s;
+}
+h1 span:nth-child(5){
+  animation-delay: 1s;
+}
+h1 span:nth-child(6){
+  animation-delay: 1.2s;
+}
+h1 span:nth-child(7){
+  animation-delay: 1.4s;
+}
